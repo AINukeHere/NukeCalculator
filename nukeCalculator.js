@@ -7,7 +7,7 @@ var nukeCalculator={
         this.hpArmor = 100;
         this.shieldArmor = 50;
         this.coeffPosType = "직격";
-        this.coeffScaleType = "중형";
+        this.coeffScaleType = "소형";
         this.Dot5 = false;
     },
         
