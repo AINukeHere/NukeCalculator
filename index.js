@@ -1,11 +1,18 @@
+var mouseX, mouseY;
+
 function setPopupInfoPosition(event)
 {
     var armorPopupInfo = document.getElementById("armorPopupInfo");
     var offset = 10;
-    var leftValue = (event.pageX+offset).toString()+"px";
-    var topValue = (event.pageY+offset).toString()+"px";
+    mouseX = (event.pageX+offset);
+    mouseY = (event.pageY+offset);
+    var leftValue = mouseX.toString()+"px";
+    var topValue = mouseY.toString()+"px";
     armorPopupInfo.style.left = leftValue;
     armorPopupInfo.style.top = topValue;
+
+    // console.log(event.pageX, event.pageY);
+
 }
 function showNukeCalcArmorPopup(bShield)
 {
@@ -65,13 +72,30 @@ function NukeCalc_ChangeCoeffScaleType(inputTag)
 {
     nukeCalculator.coeffScaleType = inputTag.value;
     NukeCalc_ViewerUpdateAll();
-    console.log(nukeCalculator.coeffScaleType);
+}
+function NukeCalc_ChangeCoeffPosType(inputTag){
+    nukeCalculator.coeffPosType = inputTag.value;
+    NukeCalc_ViewerUpdateAll();
+    var targetDivTag = document.getElementById("nukeCalcTarget");
+    switch(nukeCalculator.coeffPosType)
+    {
+        case '직격':
+            targetDivTag.style.left = "240px";
+            break;
+        case '빗맞음':
+            targetDivTag.style.left = "520px";
+            break;
+        case '맞았나':
+            targetDivTag.style.left = "633px";
+            break;
+    }
 }
 function NukeCalc_ShowInfo()
 {
     var logDiv = document.getElementById("nukeCalcLog");
     logDiv.children[1].innerHTML += nukeCalculator.GetInfo();
 }
+//nukeCalculator의 멤버변수 => 입력창들에 업데이트
 function NukeCalc_InputInitFromCalculator(){
     var divs=nukeCalcInput.getElementsByTagName("div");
     divs[0].getElementsByTagName("input")[0].value = nukeCalculator.maxHP;
@@ -81,6 +105,7 @@ function NukeCalc_InputInitFromCalculator(){
     divs[4].getElementsByTagName("select")[0].value = nukeCalculator.coeffScaleType;
     divs[5].getElementsByTagName("select")[0].value = nukeCalculator.coeffPosType;
 }
+//nukeCalculator의 멤버변수들로 가시화 업데이트
 function NukeCalc_ViewerUpdateAll()
 {
     var nukeCalcInfoViewer = document.getElementById("nukeCalcInfoViewer");
@@ -116,12 +141,40 @@ function NukeCalc_ViewerUpdateAll()
 
     //체력
     hpSpanTag.innerHTML = nukeCalculator.curHP + '/' + nukeCalculator.maxHP;
+    if (nukeCalculator.curHP < nukeCalculator.maxHP*0.34)
+        hpSpanTag.className= 'hpColorRed';
+    else if (nukeCalculator.curHP < nukeCalculator.maxHP*0.67)
+        hpSpanTag.className= 'hpColorYellow';
+    else
+        hpSpanTag.className= 'hpColorGreen';
     //체력 방어력
     hpArmorSpanTag.innerHTML = nukeCalculator.hpArmor;
     //쉴드
     shieldSpanTag.innerHTML = nukeCalculator.curShield + '/' + nukeCalculator.maxShield;
     //쉴드 방어력
     shieldArmorSpanTag.innerHTML = nukeCalculator.shieldArmor;
+}
+function setPositionAtMousePointer()
+{
+    var targetDivTag = document.getElementById("nukeCalcTarget");
+    var leftValue = (mouseX - 15 - targetDivTag.clientWidth/2);
+    if (leftValue < 10)
+        leftValue = 10;
+    else if(leftValue >= 750)
+        leftValue = 749;
+    targetDivTag.style.left = leftValue.toString() + "px";
+    if (leftValue < 456){
+        nukeCalculator.coeffPosType = "직격";
+        NukeCalc_InputInitFromCalculator();
+    }
+    else if(leftValue < 578){
+        nukeCalculator.coeffPosType = "빗맞음";
+        NukeCalc_InputInitFromCalculator();
+    }
+    else{
+        nukeCalculator.coeffPosType = "맞았나";
+        NukeCalc_InputInitFromCalculator();
+    }
 }
 function NukeCalc_Export(){
     

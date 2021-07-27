@@ -2,8 +2,14 @@
 span.defaultFont{
     color: rgb(184, 184, 232);
 }
-span.recoveryTypeColor{
+span.hpColorGreen{
     color:rgb(16, 252, 24);
+}
+span.hpColorYellow{
+    color:rgb(243, 243, 54);
+}
+span.hpColorRed{
+    color:rgb(198, 24, 24);
 }
 
 /*핵데미지 계산기*/
@@ -12,10 +18,32 @@ span.recoveryTypeColor{
     margin-top: 10px;
     grid-template-columns: 200px 500px auto;
     grid-gap: 10px;
+    max-width: 1111px;
 }
 #nukeCalculatorGrid > div{
     padding: 10px;
     border: 1px solid black;
+}
+#nukeCalculatorPositionViewer{
+    position: relative;
+    grid-column: 1/4;
+    width: 1089px;
+    height: 250px;
+}
+#nukeCalculatorPositionViewer img{
+    position: absolute;
+}
+#nukeCalcTarget{
+    cursor: default;
+    position: absolute;
+    background-color: rgb(0, 0, 200,50%);
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: rgb(255,255,255,50%);
+    left: 150px;
+    top:112.5px;
 }
 #nukeCalcInfoViewer{
     background-color: black;
@@ -102,5 +130,5 @@ span.recoveryTypeColor{
 }
 #nukeCalcLog{
     overflow: scroll;
-    height: 250px;
+    height: 285px;
 }
