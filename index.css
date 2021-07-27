@@ -138,6 +138,5 @@ span.hpColorRed{
 }
 #nukeCalcLog{
     grid-column: 1/4;
-    overflow: scroll;
     height: 285px;
 }
