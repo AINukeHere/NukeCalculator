@@ -28,43 +28,44 @@ function hideNukeCalcArmorPopup(bShield)
     var armorPopupInfo = document.getElementById("armorPopupInfo");
     armorPopupInfo.style.display="none";
 }
-function NukeCalc_LaunchNuke(){
-    var res = nukeCalculator.Damage();
-    var logDiv = document.getElementById("nukeCalcLog");
-    logDiv.children[1].innerHTML += res + '<br>';
+function NukeCalc_LaunchNuke(bIncludeDetail=false){
+    var bIncludeDetail = document.getElementById("nukeCalcIncludeExplainCheckBox").children[0].checked;
+    var res = nukeCalculator.Damage(bIncludeDetail);
+    var logTextarea = document.getElementById("nukeCalcLog").children[1];
+    logTextarea.value += res + '\n';
     NukeCalc_ViewerUpdateAll();
 }
 function NukeCalc_Heal(){
     nukeCalculator.Heal();  
-    var logDiv = document.getElementById("nukeCalcLog");
-    logDiv.children[1].innerHTML += '체력이 회복되었습니다.<br>';
+    var logTextarea = document.getElementById("nukeCalcLog").children[1];
+    logTextarea.value += '체력이 회복되었습니다.\n';
     NukeCalc_ViewerUpdateAll();
 }
 function NukeCalc_ClearLog(){
-    var logDiv = document.getElementById("nukeCalcLog");
-    logDiv.children[1].innerHTML = '';
+    var logTextarea = document.getElementById("nukeCalcLog").children[1];
+    logTextarea.value = '';
 }
 function NukeCalc_ChangeHP(inputTag)
 {
-    nukeCalculator.maxHP = inputTag.value;
+    nukeCalculator.maxHP = parseInt(inputTag.value);
     nukeCalculator.Heal();
     NukeCalc_ViewerUpdateAll();
 }
 function NukeCalc_ChangeHPArmor(inputTag)
 {
-    nukeCalculator.hpArmor = inputTag.value;
+    nukeCalculator.hpArmor = parseInt(inputTag.value);
     nukeCalculator.Heal();
     NukeCalc_ViewerUpdateAll();
 }
 function NukeCalc_ChangeShield(inputTag)
 {
-    nukeCalculator.maxShield = inputTag.value;
+    nukeCalculator.maxShield = parseInt(inputTag.value);
     nukeCalculator.Heal();
     NukeCalc_ViewerUpdateAll();
 }
 function NukeCalc_ChangeShieldArmor(inputTag)
 {
-    nukeCalculator.shieldArmor = inputTag.value;
+    nukeCalculator.shieldArmor = parseInt(inputTag.value);
     nukeCalculator.Heal();
     NukeCalc_ViewerUpdateAll();
 }
@@ -92,8 +93,8 @@ function NukeCalc_ChangeCoeffPosType(inputTag){
 }
 function NukeCalc_ShowInfo()
 {
-    var logDiv = document.getElementById("nukeCalcLog");
-    logDiv.children[1].innerHTML += nukeCalculator.GetInfo();
+    var logTextarea = document.getElementById("nukeCalcLog").children[1];
+    logTextarea.value += nukeCalculator.GetInfo();
 }
 //nukeCalculator의 멤버변수 => 입력창들에 업데이트
 function NukeCalc_InputInitFromCalculator(){
@@ -177,8 +178,19 @@ function setPositionAtMousePointer()
     }
 }
 function NukeCalc_Export(){
-    
+    var nukeCalcInfoText = document.getElementById("nukeCalcInfoText");
+    nukeCalcInfoText.children[0].value = nukeCalculator.Save();
 }
 function NukeCalc_Import(){
-    
+    var nukeCalcInfoText = document.getElementById("nukeCalcInfoText");
+    try{
+        nukeCalculator.Load(nukeCalcInfoText.children[0].value);
+    }
+    catch{
+        var logTextarea = document.getElementById("nukeCalcLog").children[1];
+        logTextarea.value += "불러오기에 실패했습니다.\n";
+    }
+    finally{
+        NukeCalc_ViewerUpdateAll();
+    }
 }

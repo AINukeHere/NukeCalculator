@@ -27,11 +27,15 @@ span.hpColorRed{
 #nukeCalculatorPositionViewer{
     position: relative;
     grid-column: 1/4;
-    width: 1089px;
+    width: 1111px;
     height: 250px;
 }
 #nukeCalculatorPositionViewer img{
     position: absolute;
+}
+#nukeCalculatorPositionViewer span{
+    position: absolute;
+    color: white;
 }
 #nukeCalcTarget{
     cursor: default;
@@ -128,7 +132,12 @@ span.hpColorRed{
 #nukeCalcImportBtn:active{
     background-image: url('data/importBtn_push.png');
 }
+#nukeCalcInfoText{
+    width: 391px;
+    height: 288px;
+}
 #nukeCalcLog{
+    grid-column: 1/4;
     overflow: scroll;
     height: 285px;
 }

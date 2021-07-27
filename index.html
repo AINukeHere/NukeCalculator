@@ -20,6 +20,7 @@
             <div id ="nukeCalculatorPositionViewer">
                 <img onmousedown="setPositionAtMousePointer()" src="data/positionBackground2.png">
                 <div onmousedown="setPositionAtMousePointer()" id="nukeCalcTarget">Target</div>
+                <span>마우스로 타격위치 조절가능</span>
             </div>
             <div id="nukeCalcInfoViewer">
                 <div style='height: 124px; line-height: 124px; margin-bottom:10px'>
@@ -70,7 +71,7 @@
                     </select>
                 </div>
                 <div id="nukeCalcInputBtnGrid">
-                    <div id="nukeCalcNukeBtn" onclick="NukeCalc_LaunchNuke()">
+                    <div id="nukeCalcNukeBtn" onclick="NukeCalc_LaunchNuke(true)">
                         <span>핵을 쏴라!!</span>
                     </div>
                     <div id="nukeCalcHealBtn" onclick="NukeCalc_Heal()">
@@ -80,17 +81,24 @@
                         <span>정보</span>
                     </div>
                     <div id="nukeCalcExportBtn" onclick="NukeCalc_Export()">
-                        <span>내보내기</span>
+                        <span>실험코드<br>내보내기</span>
                     </div>
                     <div id="nukeCalcImportBtn" onclick="NukeCalc_Import()">
-                        <span>가져오기</span>
+                        <span>실험코드<br>가져오기</span>
                     </div>
                 </div>
+                <div id="nukeCalcIncludeExplainCheckBox">
+                    <input type="checkbox" id="설명추가" name="설명추가">
+                    <label for="설명추가">설명추가</label>
+                </div>
+            </div>
+            <div id="nukeCalcInfoText">
+                실험코드
+                <textarea style='width: 100%; height: 80%; resize: none;'></textarea>
             </div>
             <div id="nukeCalcLog">
                 <button style='display:block' onclick="NukeCalc_ClearLog()">로그 지우기</button>
-                <span></span>
-                <button style='display:block' onclick="NukeCalc_ClearLog()">로그 지우기</button>
+                <textarea style='width: 100%; height: 100%; resize: none;'></textarea>
             </div>
         </div>
         <div id="armorPopupInfo">
