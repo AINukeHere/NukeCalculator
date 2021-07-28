@@ -4,10 +4,10 @@ function setPopupInfoPosition(event)
 {
     var armorPopupInfo = document.getElementById("armorPopupInfo");
     var offset = 10;
-    mouseX = (event.pageX+offset);
-    mouseY = (event.pageY+offset);
-    var leftValue = mouseX.toString()+"px";
-    var topValue = mouseY.toString()+"px";
+    mouseX = event.pageX;
+    mouseY = event.pageY;
+    var leftValue = (mouseX+offset).toString()+"px";
+    var topValue = (mouseY+offset).toString()+"px";
     armorPopupInfo.style.left = leftValue;
     armorPopupInfo.style.top = topValue;
 
@@ -158,7 +158,7 @@ function NukeCalc_ViewerUpdateAll()
 function setPositionAtMousePointer()
 {
     var targetDivTag = document.getElementById("nukeCalcTarget");
-    var leftValue = (mouseX - 15 - targetDivTag.clientWidth/2);
+    var leftValue = (mouseX-10 - targetDivTag.clientWidth/2);
     if (leftValue < 10)
         leftValue = 10;
     else if(leftValue >= 750)
