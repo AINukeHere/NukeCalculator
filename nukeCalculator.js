@@ -60,7 +60,7 @@ var nukeCalculator={
         {
             totalDamage = totalMaxHP * 2. / 3. * coeffPosValue;
             if (bIncludeDetail)
-                res += '2. 체력이 750이상이니 총 데미지는 총 최대체력에 2/3를 곱하고 위에서 계산해둔 거리에 따른 계수 '+coeffPosValue+'를 곱해서 '+totalDamage+'}가 나와.\n';
+                res += '2. 체력이 750이상이니 총 데미지는 총 최대체력에 2/3를 곱하고 위에서 계산해둔 거리에 따른 계수 '+coeffPosValue+'를 곱해서 '+totalDamage+'가 나와.\n';
         }
         else{
             totalDamage = 500*coeffPosValue
@@ -162,7 +162,7 @@ var nukeCalculator={
             baseHP += alphaHP;
         this.maxHP = baseHP;
         this.curHP = this.maxHP;
-        return baseHP, alphaHP;
+        return {'baseHP':baseHP, 'plusAlphaHP':alphaHP};
     }
 }
 nukeCalculator.init();

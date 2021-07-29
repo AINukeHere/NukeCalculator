@@ -31,14 +31,12 @@ function hideNukeCalcArmorPopup(bShield)
 function NukeCalc_LaunchNuke(bIncludeDetail=false){
     var bIncludeDetail = document.getElementById("nukeCalcIncludeExplainCheckBox").children[0].checked;
     var res = nukeCalculator.Damage(bIncludeDetail);
-    var logTextarea = document.getElementById("nukeCalcLog").children[1];
-    logTextarea.value += res + '\n';
+    NukeCalc_Log(res + '\n');
     NukeCalc_ViewerUpdateAll();
 }
 function NukeCalc_Heal(){
-    nukeCalculator.Heal();  
-    var logTextarea = document.getElementById("nukeCalcLog").children[1];
-    logTextarea.value += '체력이 회복되었습니다.\n';
+    nukeCalculator.Heal();
+    NukeCalc_Log('체력이 회복되었습니다.\n');
     NukeCalc_ViewerUpdateAll();
 }
 function NukeCalc_ClearLog(){
@@ -77,6 +75,9 @@ function NukeCalc_ChangeCoeffScaleType(inputTag)
 function NukeCalc_ChangeCoeffPosType(inputTag){
     nukeCalculator.coeffPosType = inputTag.value;
     NukeCalc_ViewerUpdateAll();
+    NukeCalc_PosViewerUpdate();
+}
+function NukeCalc_PosViewerUpdate(){
     var targetDivTag = document.getElementById("nukeCalcTarget");
     switch(nukeCalculator.coeffPosType)
     {
@@ -93,8 +94,7 @@ function NukeCalc_ChangeCoeffPosType(inputTag){
 }
 function NukeCalc_ShowInfo()
 {
-    var logTextarea = document.getElementById("nukeCalcLog").children[1];
-    logTextarea.value += nukeCalculator.GetInfo();
+    NukeCalc_Log(nukeCalculator.GetInfo()+'\n');
 }
 //nukeCalculator의 멤버변수 => 입력창들에 업데이트
 function NukeCalc_InputInitFromCalculator(){
@@ -140,6 +140,9 @@ function NukeCalc_ViewerUpdateAll()
         srcName += "_with_shield";
     targetImgTag.src = srcName + ".png";
 
+    //유닛위치
+     
+    
     //체력
     hpSpanTag.innerHTML = nukeCalculator.curHP + '/' + nukeCalculator.maxHP;
     if (nukeCalculator.curHP < nukeCalculator.maxHP*0.34)
@@ -187,10 +190,23 @@ function NukeCalc_Import(){
         nukeCalculator.Load(nukeCalcInfoText.children[0].value);
     }
     catch{
-        var logTextarea = document.getElementById("nukeCalcLog").children[1];
-        logTextarea.value += "불러오기에 실패했습니다.\n";
+        NukeCalc_Log("불러오기에 실패했습니다.\n");
     }
     finally{
         NukeCalc_ViewerUpdateAll();
+        NukeCalc_InputInitFromCalculator();
+        NukeCalc_PosViewerUpdate();
     }
+}
+function NukeCalc_MakeHPFromGoalDamage(){
+    var inputTag = document.getElementById("데미지맞춤");
+    res = nukeCalculator.MakeHPforGoalDamage(inputTag.value);
+    NukeCalc_Log(res.baseHP+'\n'+res.plusAlphaHP+'\n');
+    NukeCalc_InputInitFromCalculator();
+    NukeCalc_ViewerUpdateAll();
+}
+function NukeCalc_Log(content){
+    var logTextarea = document.getElementById("nukeCalcLog").children[1];
+    logTextarea.value += content;
+    logTextarea.scrollTop = logTextarea.scrollHeight;
 }

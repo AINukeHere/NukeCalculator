@@ -91,6 +91,11 @@
                     <input type="checkbox" id="설명추가" name="설명추가">
                     <label for="설명추가">설명추가</label>
                 </div>
+                <hr>
+                <div>
+                    <input type="number" id="데미지맞춤" name="데미지맞춤">
+                    <input type="button" value="데미지맞춤" onclick="NukeCalc_MakeHPFromGoalDamage()">
+                </div>
             </div>
             <div id="nukeCalcInfoText">
                 실험코드
@@ -98,7 +103,7 @@
             </div>
             <div id="nukeCalcLog">
                 <button style='display:block' onclick="NukeCalc_ClearLog()">로그 지우기</button>
-                <textarea style='width: 100%; height: 90%; resize: none;'></textarea>
+                <textarea readonly style='width: 100%; height: 90%; resize: none;'></textarea>
             </div>
         </div>
         <div id="armorPopupInfo">
