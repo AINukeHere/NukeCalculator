@@ -181,13 +181,13 @@ function setPositionAtMousePointer()
     }
 }
 function NukeCalc_Export(){
-    var nukeCalcInfoText = document.getElementById("nukeCalcInfoText");
-    nukeCalcInfoText.children[0].value = nukeCalculator.Save();
+    var nukeCalcInfoTextarea = document.getElementById("nukeCalcInfoText").getElementsByTagName("textarea")[0];
+    nukeCalcInfoTextarea.value = nukeCalculator.Save();
 }
 function NukeCalc_Import(){
-    var nukeCalcInfoText = document.getElementById("nukeCalcInfoText");
+    var nukeCalcInfoTextarea = document.getElementById("nukeCalcInfoText").getElementsByTagName("textarea")[0];
     try{
-        nukeCalculator.Load(nukeCalcInfoText.children[0].value);
+        nukeCalculator.Load(nukeCalcInfoTextarea.value);
     }
     catch{
         NukeCalc_Log("불러오기에 실패했습니다.\n");
