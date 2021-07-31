@@ -20,6 +20,9 @@ span.hpColorRed{
     grid-gap: 10px;
     max-width: 1111px;
 }
+.imgPreLoad{
+    display: none;
+}
 #nukeCalculatorGrid > div{
     padding: 10px;
     border: 1px solid black;
