@@ -200,10 +200,16 @@ function NukeCalc_Import(){
 }
 function NukeCalc_MakeHPFromGoalDamage(){
     var inputTag = document.getElementById("데미지맞춤");
-    res = nukeCalculator.MakeHPforGoalDamage(inputTag.value);
-    NukeCalc_Log(res.baseHP+'\n'+res.plusAlphaHP+'\n');
-    NukeCalc_InputInitFromCalculator();
-    NukeCalc_ViewerUpdateAll();
+    if(inputTag.value != ""){
+        val = parseInt(inputTag.value);
+        res = nukeCalculator.MakeHPforGoalDamage(val);
+        NukeCalc_Log("최대체력을 제외한 항목들을 고려하여 "+val+"의 데미지를 받기위해서는 최소체력이 "+res.baseHP+'가 되어야하며\n'+res.plusAlphaHP+'씩 증가시키면 받는 데미지를 유지할 수 있습니다.\n단, 쉴드가 존재할 때에는 쉴드가 버텨주는동안 데미지가 다르게 나올 수 있습니다.\n가능한 최소체력으로 설정되었습니다.');
+        NukeCalc_InputInitFromCalculator();
+        NukeCalc_ViewerUpdateAll();
+    }
+    else{
+        NukeCalc_Log("원하는 데미지를 입력하셔야합니다.");
+    }
 }
 function NukeCalc_Log(content){
     var logTextarea = document.getElementById("nukeCalcLog").children[1];
