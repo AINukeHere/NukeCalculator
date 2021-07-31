@@ -134,9 +134,17 @@ span.hpColorRed{
 }
 #nukeCalcInfoText{
     width: 391px;
-    height: 332px;
+    /* height: 332px; */
 }
 #nukeCalcLog{
     grid-column: 1/4;
     height: 285px;
+}
+.pageInfo{
+    display: inline-block; 
+    width: 100%; 
+    text-align: right;
+    font-size: 10px;
+    height: 20%;
+    /* line-height: 20%; */
 }

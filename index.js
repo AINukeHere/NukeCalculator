@@ -100,11 +100,11 @@ function NukeCalc_ShowInfo()
 function NukeCalc_InputInitFromCalculator(){
     var divs=nukeCalcInput.getElementsByTagName("div");
     divs[0].getElementsByTagName("input")[0].value = nukeCalculator.maxHP;
-    divs[1].getElementsByTagName("input")[0].value = nukeCalculator.hpArmor;
-    divs[2].getElementsByTagName("input")[0].value = nukeCalculator.maxShield;
-    divs[3].getElementsByTagName("input")[0].value = nukeCalculator.shieldArmor;
-    divs[4].getElementsByTagName("select")[0].value = nukeCalculator.coeffScaleType;
-    divs[5].getElementsByTagName("select")[0].value = nukeCalculator.coeffPosType;
+    divs[0].getElementsByTagName("input")[1].value = nukeCalculator.hpArmor;
+    divs[1].getElementsByTagName("input")[0].value = nukeCalculator.maxShield;
+    divs[1].getElementsByTagName("input")[1].value = nukeCalculator.shieldArmor;
+    divs[2].getElementsByTagName("select")[0].value = nukeCalculator.coeffScaleType;
+    divs[3].getElementsByTagName("select")[0].value = nukeCalculator.coeffPosType;
 }
 //nukeCalculator의 멤버변수들로 가시화 업데이트
 function NukeCalc_ViewerUpdateAll()
