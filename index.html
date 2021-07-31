@@ -45,15 +45,15 @@
             <div id="nukeCalcInput">
                 <div>
                     <span style="display:inline-block; width:70px;">최대체력</span>
-                    <input style="width: 100px;" type="number" max="8388607" onchange="NukeCalc_ChangeHP(this)"></input>
+                    <input style="width: 100px;" type="number" min="0" max="8388607" onchange="NukeCalc_ChangeHP(this)"></input>
                     <span style="display:inline-block; width: 90px; text-align: center;">체력방어력</span>
-                    <input style="width: 100px;" type="number" max="510" onchange="NukeCalc_ChangeHPArmor(this)"></input>
+                    <input style="width: 100px;" type="number" min="0" max="510" onchange="NukeCalc_ChangeHPArmor(this)"></input>
                 </div>
                 <div>
                     <span style="display:inline-block; width: 70px;">쉴드</span>
-                    <input style="width: 100px;" type="number" max="65535" onchange="NukeCalc_ChangeShield(this)"></input>
+                    <input style="width: 100px;" type="number" min="0" max="65535" onchange="NukeCalc_ChangeShield(this)"></input>
                     <span style="display:inline-block; width: 90px; text-align: center;">쉴드방어력</span>
-                    <input style="width: 100px;" type="number" max="255" onchange="NukeCalc_ChangeShieldArmor(this)"></input>
+                    <input style="width: 100px;" type="number" min="0" max="255" onchange="NukeCalc_ChangeShieldArmor(this)"></input>
                 </div>
                 <div>
                     <span>유닛크기</span>

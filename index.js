@@ -45,24 +45,64 @@ function NukeCalc_ClearLog(){
 }
 function NukeCalc_ChangeHP(inputTag)
 {
-    nukeCalculator.maxHP = parseInt(inputTag.value);
+    var val = parseInt(inputTag.value);
+    if(val < 1)
+    {
+        inputTag.value = val = 1;
+        NukeCalc_Log("※주의※ 체력은 1보다 작을 수 없습니다.\n");
+    }
+    else if(8688607 < val){
+        inputTag.value = val = 8688607;
+        NukeCalc_Log("※주의※ 체력은 8688607보다 클 수 없습니다.\n");
+    }
+    nukeCalculator.maxHP = parseInt(val);
     nukeCalculator.Heal();
     NukeCalc_ViewerUpdateAll();
 }
 function NukeCalc_ChangeHPArmor(inputTag)
 {
-    nukeCalculator.hpArmor = parseInt(inputTag.value);
+    var val = parseInt(inputTag.value);
+    if(val < 0)
+    {
+        inputTag.value = val = 0;
+        NukeCalc_Log("※주의※ 체력방어력은 0보다 작을 수 없습니다.\n");
+    }
+    else if(510 < val){
+        inputTag.value = val = 510;
+        NukeCalc_Log("※주의※ 체력방어력은 510보다 클 수 없습니다.\n");
+    }
+    nukeCalculator.hpArmor = parseInt(val);
     nukeCalculator.Heal();
     NukeCalc_ViewerUpdateAll();
 }
 function NukeCalc_ChangeShield(inputTag)
 {
+    var val = parseInt(inputTag.value);
+    if(val < 0)
+    {
+        inputTag.value = val = 0;
+        NukeCalc_Log("※주의※ 쉴드는 0보다 작을 수 없습니다.\n");
+    }
+    else if(65535 < val){
+        inputTag.value = val = 65535;
+        NukeCalc_Log("※주의※ 쉴드는 65535보다 클 수 없습니다.\n");
+    }
     nukeCalculator.maxShield = parseInt(inputTag.value);
     nukeCalculator.Heal();
     NukeCalc_ViewerUpdateAll();
 }
 function NukeCalc_ChangeShieldArmor(inputTag)
 {
+    var val = parseInt(inputTag.value);
+    if(val < 0)
+    {
+        inputTag.value = val = 0;
+        NukeCalc_Log("※주의※ 쉴드방어력은 0보다 작을 수 없습니다.\n");
+    }
+    else if(255 < val){
+        inputTag.value = val = 255;
+        NukeCalc_Log("※주의※ 쉴드방어력은 255 클 수 없습니다.\n");
+    }
     nukeCalculator.shieldArmor = parseInt(inputTag.value);
     nukeCalculator.Heal();
     NukeCalc_ViewerUpdateAll();
