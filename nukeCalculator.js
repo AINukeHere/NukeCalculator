@@ -94,10 +94,20 @@ var nukeCalculator={
         }
         if (totalDamage > 0){
             // 체력이 남은 데미지를 받는다.
-            hpDamage = parseInt((totalDamage - this.hpArmor)*coeffScaleValue) % 65536;
-            if (bIncludeDetail){
-                res += '4. 체력이 입는 데미지는 총 데미지 에서 방어력만큼 뺀 뒤에 위에서 계산해둔 유닛크기에 따른 계수를 곱해주고 데미지의 최대치가 65535이므로 65536으로 나머지 연산을 하면 돼.\n';
-                res += '   식으로 표현하면 (('+totalDamage+' - '+this.hpArmor+')*'+coeffScaleValue+') % 65536 이고 계산결과는 '+hpDamage+'야.\n';
+            if(totalDamage <= this.hpArmor) //방어력이 남은 데미지보다 높다면
+            {
+                hpDamage = 0;
+                if (bIncludeDetail){
+                    res += '4. 체력이 입는 데미지는 총 데미지 에서 방어력만큼 뺀 뒤에 위에서 계산해둔 유닛크기에 따른 계수를 곱해주고 데미지의 최대치가 65535이므로 65536으로 나머지 연산을 하면 돼.\n';
+                    res += '   하지만 총 데미지('+totalDamage+')보다 방어력('+this.hpArmor+')이 더 높기때문에 결국 데미지는 0이 돼버려\n';
+                }
+            }
+            else{
+                hpDamage = parseInt((totalDamage - this.hpArmor)*coeffScaleValue) % 65536;
+                if (bIncludeDetail){
+                    res += '4. 체력이 입는 데미지는 총 데미지 에서 방어력만큼 뺀 뒤에 위에서 계산해둔 유닛크기에 따른 계수를 곱해주고 데미지의 최대치가 65535이므로 65536으로 나머지 연산을 하면 돼.\n';
+                    res += '   식으로 표현하면 (('+totalDamage+' - '+this.hpArmor+')*'+coeffScaleValue+') % 65536 이고 계산결과는 '+hpDamage+'야.\n';
+                }
             }
             if (hpDamage == 0){
                 if (this.Dot5){
