@@ -161,8 +161,8 @@ var nukeCalculator={
     MakeHPforGoalDamage:function(goalDamage){
         coeffPosValue = this.GetCoeffPosValue();
         coeffScaleValue = this.GetCoeffScaleValue();
-        baseHP = parseInt(3/(2.*coeffPosValue)*(goalDamage / coeffScaleValue + this.hpArmor));
-        alphaHP = parseInt(98304 / (coeffPosValue*coeffScaleValue));
+        baseHP = Math.ceil(parseFloat(3/(2.*coeffPosValue)*(goalDamage / coeffScaleValue + this.hpArmor)));
+        alphaHP = Math.ceil(parseFloat(98304 / (coeffPosValue*coeffScaleValue)));
         if (this.maxShield > 0){
             if (baseHP <= this.maxShield)
                 baseHP += alphaHP;
