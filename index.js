@@ -198,14 +198,15 @@ function NukeCalc_ViewerUpdateAll()
     //쉴드 방어력
     shieldArmorSpanTag.innerHTML = nukeCalculator.shieldArmor;
 }
+//타격위치 마우스로 설정
 function setPositionAtMousePointer()
 {
     var targetDivTag = document.getElementById("nukeCalcTarget");
     var leftValue = (mouseX-10 - targetDivTag.clientWidth/2);
     if (leftValue < 10)
         leftValue = 10;
-    else if(leftValue >= 750)
-        leftValue = 749;
+    else if(leftValue >= 696)
+        leftValue = 695;
     targetDivTag.style.left = leftValue.toString() + "px";
     if (leftValue < 456){
         nukeCalculator.coeffPosType = "직격";
